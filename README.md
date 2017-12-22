@@ -45,7 +45,7 @@ sudo apt-get update
 sudo apt-get install libharfbuzz0b libfontconfig1
 
 # picam
-wget https://github.com/iizukanao/picam/releases/download/v1.4.6/picam-1.4.6-binary-scetch.tar.xz
+wget https://github.com/iizukanao/picam/releases/download/v1.4.6/picam-1.4.6-binary-stretch.tar.xz
 tar xvf picam-1.4.6-binary-scetch.tar.xz
 cp picam-1.4.6-binary-stretch/picam ~/picam/
 cp picam-1.4.6-binary-stretch/LICENSE ~/picam/
