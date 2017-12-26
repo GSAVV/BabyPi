@@ -19,4 +19,7 @@ sleep 60
 cd ..
 cd picam/
 ./picam --alsadev hw:1,0 --rtspout  & # > /home/pi/picam.log &
+sleep 5
+cd /home/pi/BabyPi/
+python sensor.py &
 
