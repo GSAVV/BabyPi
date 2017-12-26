@@ -58,11 +58,37 @@ Please notice, that the binary names may change in the future. iizukanao gives d
 
 ## Startup Script
 
-... to be done
+add the startup script to the /etc/rc.local file so it starts automatically with this line
+```
+/home/pi/BabyPi/BabyPi_start.sh &
+```
+The & is important!
 
 ## DHT22 Script
 
-... to be done
+This script is started with the startup script. It reads the sensor data and creates the aubtitles and saves the data in a csv file.
 
+We need to create the data log directory:
+```
+mkdir /home/pi/babylog
+touch /home/pi/babylog/data.csv
+```
 
+If you want to access your data log via smb share, you have to make a samba 
+share:
+```   
+sudo chmod 770 /home/pi/babylog 
+sudo apt-get update 
+sudo apt-get install samba samba-common smbclient 
+sudo smbpasswd -a pi
+sudo smbpasswd -a root
+```
 
+and add the following lines to the config file /etc/samba/smb.conf 
+``` 
+[Babylog]
+   comment = Log directory of temperature and humidity data
+   path = /home/pi/babylog
+   browsable = yes
+   read only = no
+```
