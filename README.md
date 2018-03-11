@@ -1,6 +1,13 @@
 # BabyPi
 Raspberry Pi with PiNoir Camera, IR LED, USB Microphone and DHT22 Adafruit Sensor
 
+The stream will be available under the following address:
+```
+rtsp://YOURPILANADDRESS:80/live/picam
+```
+
+If you use VLC to connect to the stream, you can reduce the buffer size from 1000ms to e.g. 300ms to reduce the timelag.
+
 ## Overview
 
 BabyPi needs no graphical interface, so it can be deactivated (boot into terminal with auto-login). SSH and camera module must be activated
