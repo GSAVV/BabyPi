@@ -1,7 +1,7 @@
 #!/bin/bash
-#rm -r /home/pi/picam/rec
-#rm -r /home/pi/picam/hooks
-#rm -r /home/pi/picam/state
+rm -r /home/pi/picam/rec
+rm -r /home/pi/picam/hooks
+rm -r /home/pi/picam/state
 
 mkdir -p /run/shm/rec
 mkdir -p /run/shm/hooks
@@ -18,7 +18,7 @@ cd /home/pi/node-rtsp-rtmp-server/
 sleep 60
 cd ..
 cd picam/
-./picam --alsadev hw:1,0 --rtspout  & # > /home/pi/picam.log &
+./picam --alsadev hw:1,0 --rtspout --ex night --wb shade & #  > /home/pi/picam.log &
 sleep 5
 cd /home/pi/BabyPi/
 python sensor.py &
