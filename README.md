@@ -10,7 +10,7 @@ If you use VLC to connect to the stream, you can reduce the buffer size from 100
 
 ## Overview
 
-BabyPi needs no graphical interface, so it can be deactivated (boot into terminal with auto-login). SSH and camera module must be activated
+BabyPi needs no graphical interface, so it can be deactivated (boot into terminal with auto-login). SSH and camera module must be activated. However,configuring the ethernet or wifi settings is much more convenient with a GUI, so consider configuring them before turning to console-only mode.
 
 ```
 sudo raspi-config
@@ -20,7 +20,7 @@ This setup uses picam and node-rtmp-rtsp-server from iizukanao. Picam is used to
 
 For temperature and humidity data the DHT22 sensor is beeing used. Data is logged and displayed through subtitle commands.
 
-In addition to this, one or mutliple IR LEDs are installed and turned on in order to enable night vision.
+In addition to this, an IR LED-Cluster is installed and turned on in order to enable night vision (python scripts available).
 
 
 ## RTMP to RTSP Server
