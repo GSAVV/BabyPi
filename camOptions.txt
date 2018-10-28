@@ -1,0 +1,64 @@
+configuring devices
+
+[camera sensor mode 0]
+nWidth: 1920
+nHeight: 1080
+nPaddingRight: 2
+nPaddingDown: 2
+eColorFormat: 31
+nFrameRateMax: 7680 (30.00 fps)
+nFrameRateMin: 25 (0.10 fps)
+
+[camera sensor mode 1]
+nWidth: 3280
+nHeight: 2464
+nPaddingRight: 2
+nPaddingDown: 2
+eColorFormat: 31
+nFrameRateMax: 3840 (15.00 fps)
+nFrameRateMin: 25 (0.10 fps)
+
+[camera sensor mode 2]
+nWidth: 3280
+nHeight: 2464
+nPaddingRight: 2
+nPaddingDown: 2
+eColorFormat: 31
+nFrameRateMax: 3840 (15.00 fps)
+nFrameRateMin: 25 (0.10 fps)
+
+[camera sensor mode 3]
+nWidth: 1640
+nHeight: 1232
+nPaddingRight: 2
+nPaddingDown: 2
+eColorFormat: 31
+nFrameRateMax: 10240 (40.00 fps)
+nFrameRateMin: 25 (0.10 fps)
+
+[camera sensor mode 4]
+nWidth: 1640
+nHeight: 922
+nPaddingRight: 2
+nPaddingDown: 2
+eColorFormat: 31
+nFrameRateMax: 10240 (40.00 fps)
+nFrameRateMin: 25 (0.10 fps)
+
+[camera sensor mode 5]
+nWidth: 1280
+nHeight: 720
+nPaddingRight: 2
+nPaddingDown: 2
+eColorFormat: 31
+nFrameRateMax: 30720 (120.00 fps)
+nFrameRateMin: 10265 (40.10 fps)
+
+[camera sensor mode 6]
+nWidth: 640
+nHeight: 480
+nPaddingRight: 2
+nPaddingDown: 2
+eColorFormat: 31
+nFrameRateMax: 30720 (120.00 fps)
+nFrameRateMin: 10265 (40.10 fps)

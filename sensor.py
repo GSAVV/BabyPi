@@ -22,8 +22,12 @@ def textcreator():
 
 	# Get Sensor data and format it
 	hum, temp = Adafruit_DHT.read_retry(sensor, pin)
-	temp_t = 'Temperatur: {:.1f}C '.format(temp)
-	hum_t = 'Luftfeuchtigkeit: {:.1f}%'.format(hum)
+	try:
+		temp_t = 'Temperatur: {:.1f}C '.format(temp)
+		hum_t = 'Luftfeuchtigkeit: {:.1f}%'.format(hum)
+	except TypeError:
+		temp_t = 'no temp '
+		hum_t = 'no hum'
 
 	# Get time
 	time_t = datetime.now().time().strftime('%H:%M')
@@ -44,8 +48,12 @@ def datalogger():
 	global hum, temp, datadir
 
 	time_t = datetime.now().time().strftime('%H:%M:%S')
-	temp_t = '{:.1f}%'.format(temp)
-	hum_t = '{:.1f}%'.format(hum)
+	try:
+		temp_t = '{:.1f}%'.format(temp)
+		hum_t = '{:.1f}%'.format(hum)
+	except TypeError:
+		temp_t = '0'
+		hum_t ='0'
 
 	f = open(datadir + 'data.csv', 'a')
 	f.write(time_t + ';' + temp_t + ';' + hum_t)

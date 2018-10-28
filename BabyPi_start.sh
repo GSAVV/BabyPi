@@ -1,4 +1,5 @@
 #!/bin/bash
+sleep 10
 rm -r /home/pi/picam/rec
 rm -r /home/pi/picam/hooks
 rm -r /home/pi/picam/state
@@ -18,13 +19,13 @@ chmod 777 /run/shm/hooks
 chmod 777 /run/shm/state
 
 cd /home/pi/node-rtsp-rtmp-server/
-./start_server.sh & # > /home/pi/rtmp-rtsp.log &
+./start_server.sh  > /home/pi/rtmp-rtsp.log &
 sleep 60
 cd ..
 cd picam/
-./picam --alsadev hw:1,0 --rtspout --ex night --wb shade & #  > /home/pi/picam.log &
+./picam --alsadev hw:1,0 --vfr --ex nightpreview --rtspout  > /home/pi/picam.log &
 sleep 5
 cd /home/pi/BabyPi/
-python nightSwitchOff.py &
+python nightSwitchOn.py &
 python sensor.py > /home/pi/sensor.log &
 
