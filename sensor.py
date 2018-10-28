@@ -30,7 +30,7 @@ def textcreator():
 		hum_t = 'no hum'
 
 	# Get time
-	time_t = datetime.now().time().strftime('%H:%M')
+	time_t = datetime.now().strftime('%H:%M')
 
 	# Concatenate to one line
 	subtitle = 'text=' +  time_t + ' Uhr ' + temp_t + hum_t
@@ -47,7 +47,7 @@ def textcreator():
 def datalogger():
 	global hum, temp, datadir
 
-	time_t = datetime.now().time().strftime('%H:%M:%S')
+	time_t = datetime.now().strftime('%d.%m.%Y %H:%M:%S')
 	try:
 		temp_t = '{:.1f}%'.format(temp)
 		hum_t = '{:.1f}%'.format(hum)
