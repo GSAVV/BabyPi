@@ -23,7 +23,7 @@ cd /home/pi/node-rtsp-rtmp-server/
 sleep 60
 cd ..
 cd picam/
-./picam --alsadev hw:1,0 --vfr --ex nightpreview --rtspout  > /home/pi/picam.log &
+./picam --alsadev hw:1,0 --vfr --ex nightpreview --volume 2.5 --rtspout  > /home/pi/picam.log &
 sleep 5
 cd /home/pi/BabyPi/
 python nightSwitchOn.py &
