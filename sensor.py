@@ -25,7 +25,7 @@ def textcreator():
 	try:
 		temp_t = 'Temperatur: {:.1f}C '.format(temp)
 		hum_t = 'Luftfeuchtigkeit: {:.1f}%'.format(hum)
-	except TypeError:
+	except ValueError:
 		temp_t = 'no temp '
 		hum_t = 'no hum'
 
@@ -51,7 +51,7 @@ def datalogger():
 	try:
 		temp_t = '{:.1f}%'.format(temp)
 		hum_t = '{:.1f}%'.format(hum)
-	except TypeError:
+	except ValueError:
 		temp_t = '0'
 		hum_t ='0'
 
