@@ -29,12 +29,13 @@ Node.js is integrated into Raspbian, but we need to install coffee script in ord
 
 ```
 sudo apt-get install npm
-sudo npm install coffee-script -g
+sudo npm install --global coffeescript
 
 git clone https://github.com/iizukanao/node-rtsp-rtmp-server.git
 cd node-rtsp-rtmp-server
 npm install -d
 ```
+NPM thows some warning, saying its not compatible with current nodejs. But I just ignored it.
 
 The server config can be edited with 'config.coffee'
 
@@ -52,14 +53,30 @@ sudo apt-get update
 sudo apt-get install libharfbuzz0b libfontconfig1
 
 # picam
-wget https://github.com/iizukanao/picam/releases/download/v1.4.6/picam-1.4.6-binary-stretch.tar.xz
-tar xvf picam-1.4.6-binary-stretch.tar.xz
-cp picam-1.4.6-binary-stretch/picam ~/picam/
-cp picam-1.4.6-binary-stretch/LICENSE ~/picam/
+wget https://github.com/iizukanao/picam/releases/download/v1.4.9/picam-1.4.9-binary.tar.xz
+tar xvf picam-1.4.9-binary.tar.xz
+cp picam-1.4.9-binary/picam ~/picam
 
 # remove files
-rm picam-1.4.6-binary-scetch.tar.xz
-rm -r picam-1.4.6-binary-scetch/picam
+rm picam-1.4.9-binary.tar.xz
+rm -r picam-1.4.9-binary/picam
+
+# Create directories and symbolic links
+cat > make_dirs.sh <<'EOF'
+#!/bin/bash
+DEST_DIR=~/picam
+SHM_DIR=/run/shm
+
+mkdir -p $SHM_DIR/rec
+mkdir -p $SHM_DIR/hooks
+mkdir -p $SHM_DIR/state
+mkdir -p $DEST_DIR/archive
+
+ln -sfn $DEST_DIR/archive $SHM_DIR/rec/archive
+ln -sfn $SHM_DIR/rec $DEST_DIR/rec
+ln -sfn $SHM_DIR/hooks $DEST_DIR/hooks
+ln -sfn $SHM_DIR/state $DEST_DIR/state
+EOF
 ```
 Please notice, that the binary names may change in the future. iizukanao gives detailes instruction on how to compile new binaries from scratch.
 
