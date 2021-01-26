@@ -28,7 +28,6 @@ First of all, from your home directory, clone this repo:
 git clone https://github.com/GSAVV/BabyPi.git
 ```
 
-
 ## RTMP to RTSP Server
 
 Node.js is integrated into Raspbian, but we need to install coffee script in order to make this work.
@@ -101,7 +100,15 @@ The & is important!
 
 This script is started with the startup script. It reads the sensor data and creates the aubtitles and saves the data in a csv file.
 
-We need to create the data log directory:
+You need Python2, which is usually pre-installed on Raspberry OS (you can type `python` and check the version number). 
+Further, you need an (unfortunately) depreciated version of the adafruit_dht library. Install it with:
+```
+sudo pip install Adafruit_DHT
+```
+
+I will try to convert the code in the future to support Adafruits current tools.
+
+However, we need to create the data log directory:
 ```
 mkdir /home/pi/babylog
 touch /home/pi/babylog/data.csv
