@@ -22,6 +22,12 @@ For temperature and humidity data the DHT22 sensor is beeing used. Data is logge
 
 In addition to this, an IR LED-Cluster is installed and turned on in order to enable night vision (python scripts available).
 
+## BabyPi Scripts
+First of all, from your home directory, clone this repo:
+```
+git clone https://github.com/GSAVV/BabyPi.git
+```
+
 
 ## RTMP to RTSP Server
 
@@ -55,6 +61,7 @@ sudo apt-get install libharfbuzz0b libfontconfig1
 # picam
 wget https://github.com/iizukanao/picam/releases/download/v1.4.9/picam-1.4.9-binary.tar.xz
 tar xvf picam-1.4.9-binary.tar.xz
+mkdir picam
 cp picam-1.4.9-binary/picam ~/picam
 
 # remove files
@@ -77,6 +84,8 @@ ln -sfn $SHM_DIR/rec $DEST_DIR/rec
 ln -sfn $SHM_DIR/hooks $DEST_DIR/hooks
 ln -sfn $SHM_DIR/state $DEST_DIR/state
 EOF
+
+./make_dirs.sh
 ```
 Please notice, that the binary names may change in the future. iizukanao gives detailes instruction on how to compile new binaries from scratch.
 
@@ -116,3 +125,5 @@ and add the following lines to the config file /etc/samba/smb.conf
    browsable = yes
    read only = no
 ```
+
+Reboot and your good to go!
