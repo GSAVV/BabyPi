@@ -22,6 +22,10 @@ For temperature and humidity data the DHT22 sensor is beeing used. Data is logge
 
 In addition to this, an IR LED-Cluster is installed and turned on in order to enable night vision (python scripts available).
 
+The timezone can also be adjusted via commandline
+```
+sudo timedatectl set-timezone Europe/Berlin
+```
 
 ## RTMP to RTSP Server
 

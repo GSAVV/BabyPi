@@ -1,6 +1,7 @@
 import Adafruit_DHT
 from time import sleep
 from datetime import datetime
+import urllib2
 
 def init():
 	global sensor, pin, hookdir, datadir
@@ -11,9 +12,6 @@ def init():
 
 	# Define picam hook director
 	hookdir = '/home/pi/picam/hooks/'
-
-	# Define data logging directiry
-	datadir = '/home/pi/babylog/'
 
 	return;
 
@@ -39,26 +37,24 @@ def textcreator():
 	f = open(hookdir + 'subtitle', 'w+')
 	f.write(subtitle)
 	f.write('\n')
-	f.write('duration=57')
+	f.write('duration=115')
 	f.close()
 
 	return;
 
 def datalogger():
-	global hum, temp, datadir
+	global hum, temp
 
-	time_t = datetime.now().strftime('%d.%m.%Y %H:%M:%S')
 	try:
-		temp_t = '{:.1f}%'.format(temp)
-		hum_t = '{:.1f}%'.format(hum)
+		temp_t = '{:.2f}'.format(temp)
+		hum_t = '{:.2f}'.format(hum)
 	except ValueError:
 		temp_t = '0'
 		hum_t ='0'
 
-	f = open(datadir + 'data.csv', 'a')
-	f.write(time_t + ';' + temp_t + ';' + hum_t)
-	f.write('\n')
-	f.close()
+	urlS = "http://192.168.178.50/add_data.php?temp=" + temp_t + "&hum=" + hum_t
+#	print(urlS)
+	urllib2.urlopen(urlS)
 
 	return;
 
@@ -66,6 +62,6 @@ init()
 while True:
 	textcreator()
 	datalogger()
-	sleep(59)
+	sleep(120)
 
 
