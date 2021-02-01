@@ -27,6 +27,13 @@ The timezone can also be adjusted via commandline
 sudo timedatectl set-timezone Europe/Berlin
 ```
 
+=======
+## BabyPi Scripts
+First of all, from your home directory, clone this repo:
+```
+git clone https://github.com/GSAVV/BabyPi.git
+```
+
 ## RTMP to RTSP Server
 
 Node.js is integrated into Raspbian, but we need to install coffee script in order to make this work.
@@ -59,6 +66,7 @@ sudo apt-get install libharfbuzz0b libfontconfig1
 # picam
 wget https://github.com/iizukanao/picam/releases/download/v1.4.9/picam-1.4.9-binary.tar.xz
 tar xvf picam-1.4.9-binary.tar.xz
+mkdir picam
 cp picam-1.4.9-binary/picam ~/picam
 
 # remove files
@@ -81,6 +89,8 @@ ln -sfn $SHM_DIR/rec $DEST_DIR/rec
 ln -sfn $SHM_DIR/hooks $DEST_DIR/hooks
 ln -sfn $SHM_DIR/state $DEST_DIR/state
 EOF
+
+./make_dirs.sh
 ```
 Please notice, that the binary names may change in the future. iizukanao gives detailes instruction on how to compile new binaries from scratch.
 
@@ -96,7 +106,15 @@ The & is important!
 
 This script is started with the startup script. It reads the sensor data and creates the aubtitles and saves the data in a csv file.
 
-We need to create the data log directory:
+You need Python2, which is usually pre-installed on Raspberry OS (you can type `python` and check the version number). 
+Further, you need an (unfortunately) depreciated version of the adafruit_dht library. Install it with:
+```
+sudo pip install Adafruit_DHT
+```
+
+I will try to convert the code in the future to support Adafruits current tools.
+
+However, we need to create the data log directory:
 ```
 mkdir /home/pi/babylog
 touch /home/pi/babylog/data.csv
@@ -120,3 +138,5 @@ and add the following lines to the config file /etc/samba/smb.conf
    browsable = yes
    read only = no
 ```
+
+Reboot and your good to go!
