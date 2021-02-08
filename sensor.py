@@ -52,7 +52,7 @@ def datalogger():
 		temp_t = '0'
 		hum_t ='0'
 
-	urlS = "http://192.168.178.50/add_data.php?temp=" + temp_t + "&hum=" + hum_t
+	urlS = "http://192.168.178.50/add_data.php?temp=" + temp_t + "&hum=" + hum_t + "&name=sensor1"
 #	print(urlS)
 	urllib2.urlopen(urlS)
 
