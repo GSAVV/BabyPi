@@ -27,7 +27,6 @@ The timezone can also be adjusted via commandline
 sudo timedatectl set-timezone Europe/Berlin
 ```
 
-=======
 ## BabyPi Scripts
 First of all, from your home directory, clone this repo:
 ```
@@ -104,39 +103,19 @@ The & is important!
 
 ## DHT22 Script
 
-This script is started with the startup script. It reads the sensor data and creates the aubtitles and saves the data in a csv file.
+This script is started via cron. It reads the sensor data and creates the subtitles and sends the data via GET request to a DB server (not included here). Currently, the subtitle creation is disabled, because I use the script only for data logging.
 
-You need Python2, which is usually pre-installed on Raspberry OS (you can type `python` and check the version number). 
+You need Python3, which is usually pre-installed on Raspberry OS (you can type `python3` and check the version number). 
 Further, you need an (unfortunately) depreciated version of the adafruit_dht library. Install it with:
 ```
-sudo pip install Adafruit_DHT
+sudo pip3 install Adafruit_DHT
+```
+
+Then, you need to add a cron entry:
+```
+crontab -e
+
+*/5 * * * * python3 /home/pi/BabyPi/sensor.py &
 ```
 
 I will try to convert the code in the future to support Adafruits current tools.
-
-However, we need to create the data log directory:
-```
-mkdir /home/pi/babylog
-touch /home/pi/babylog/data.csv
-```
-
-If you want to access your data log via smb share, you have to make a samba 
-share:
-```   
-sudo chmod 770 /home/pi/babylog 
-sudo apt-get update 
-sudo apt-get install samba samba-common smbclient 
-sudo smbpasswd -a pi
-sudo smbpasswd -a root
-```
-
-and add the following lines to the config file /etc/samba/smb.conf 
-``` 
-[Babylog]
-   comment = Log directory of temperature and humidity data
-   path = /home/pi/babylog
-   browsable = yes
-   read only = no
-```
-
-Reboot and your good to go!

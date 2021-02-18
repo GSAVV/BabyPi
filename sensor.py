@@ -1,7 +1,6 @@
 import Adafruit_DHT
 from time import sleep
 from datetime import datetime
-import urllib2
 
 def init():
 	global sensor, pin, hookdir, datadir
@@ -13,13 +12,16 @@ def init():
 	# Define picam hook director
 	hookdir = '/home/pi/picam/hooks/'
 
-	return;
-
-def textcreator():
+def readsensor():
 	global hum, temp
 
 	# Get Sensor data and format it
 	hum, temp = Adafruit_DHT.read_retry(sensor, pin)
+
+def textcreator():
+	global hum, temp
+
+	# Convert readings to strings
 	try:
 		temp_t = 'Temperatur: {:.1f}C '.format(temp)
 		hum_t = 'Luftfeuchtigkeit: {:.1f}%'.format(hum)
@@ -40,11 +42,12 @@ def textcreator():
 	f.write('duration=115')
 	f.close()
 
-	return;
-
 def datalogger():
+	import urllib.parse
+	import urllib.request
 	global hum, temp
 
+	# Convert reading to string
 	try:
 		temp_t = '{:.2f}'.format(temp)
 		hum_t = '{:.2f}'.format(hum)
@@ -52,16 +55,19 @@ def datalogger():
 		temp_t = '0'
 		hum_t ='0'
 
-	urlS = "http://192.168.178.50/add_data.php?temp=" + temp_t + "&hum=" + hum_t + "&name=sensor1"
-#	print(urlS)
-	urllib2.urlopen(urlS)
+	url = 'http://192.168.178.50/add_data.php'
+	values = {'temp': temp_t, 
+			  'hum': hum_t,
+			  'name': 'sensor1'}
+	data = urllib.parse.urlencode(values)
+	#print(data)
+	full_url = url + '?' + data
+	with urllib.request.urlopen(full_url) as response:
+		s = response.read()
+		#print(s)
 
-	return;
-
+# Script execution
 init()
-while True:
-	textcreator()
-	datalogger()
-	sleep(120)
-
-
+readsensor()
+#textcreator()
+datalogger()

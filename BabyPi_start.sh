@@ -27,5 +27,4 @@ cd picam/
 sleep 5
 cd /home/pi/BabyPi/
 python nightSwitchOn.py &
-python sensor.py > /home/pi/sensor.log &
-
+python3 sensor.py &
